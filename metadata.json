@@ -1,0 +1,5 @@
+{
+  "name": "Retro Solitaire '95",
+  "description": "A web-based implementation of the classic Klondike Solitaire game with a nostalgic user interface inspired by Windows 3.1. Drag and drop cards, build your foundations, and enjoy the iconic bouncing card win animation.",
+  "requestFramePermissions": []
+}
