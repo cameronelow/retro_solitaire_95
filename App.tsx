@@ -2,8 +2,14 @@ import React, { useState, useEffect, useCallback } from 'react';
 import GameBoard from './components/GameBoard';
 import WinAnimation from './components/WinAnimation';
 import DragLayer from './components/DragLayer';
-import { Card, DraggedItem, PileType } from './types';
+import { Card, DraggedItem, PileType, Suit } from './types';
 import { SUITS, RANKS, RANK_VALUES } from './constants';
+
+const areColorsOpposite = (suit1: Suit, suit2: Suit) => {
+    const isRed1 = suit1 === 'HEARTS' || suit1 === 'DIAMONDS';
+    const isRed2 = suit2 === 'HEARTS' || suit2 === 'DIAMONDS';
+    return isRed1 !== isRed2;
+};
 
 const App: React.FC = () => {
     const [gameState, setGameState] = useState<'playing' | 'won' | 'new'>('new');
@@ -104,7 +110,7 @@ const App: React.FC = () => {
             if (!topCard && card.rank === 'K') {
                 isValidMove = true;
             }
-            else if (topCard && card.suit === topCard.suit && RANK_VALUES[card.rank] === RANK_VALUES[topCard.rank] - 1) {
+            else if (topCard && areColorsOpposite(card.suit, topCard.suit) && RANK_VALUES[card.rank] === RANK_VALUES[topCard.rank] - 1) {
                 isValidMove = true;
             }
         }
